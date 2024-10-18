@@ -2,7 +2,7 @@ name: ute
 
 on:
   schedule:
-    - cron: '0 11 1 * *'  # once on the first of the month
+    - cron: '45 15 * * *'  # once on the first of the month
 
 jobs:
   blue-post:
