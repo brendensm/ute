@@ -31,7 +31,8 @@ jobs:
             "lubridate",
             "gt",
             "dplyr",
-            "httr"
+            "httr",
+            "janitor"
           ), dependencies = TRUE)'
 
       - name: Create email and send
