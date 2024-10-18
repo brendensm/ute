@@ -4,9 +4,7 @@ library(lubridate)
 library(blastula)
 library(jsonlite)
 
-# Load the service account JSON from an environment variable
-
-library(jsonlite)
+gs4_deauth()
 
 type <- "service_account"
 project_id <- Sys.getenv("PROJECT_ID")
