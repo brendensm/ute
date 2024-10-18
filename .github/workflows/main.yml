@@ -1,7 +1,7 @@
 name: ute
 on:
   schedule:
-    - cron: '05 16 * * *'  # Note: Fixed the cron syntax
+    - cron: '10 16 * * *'  # Note: Fixed the cron syntax
 jobs:
   notification:
     runs-on: macOS-latest
@@ -10,11 +10,8 @@ jobs:
       EMAIL_TO: ${{ secrets.EMAIL_TO }}
     steps:
       - uses: actions/checkout@v2
-      
       - uses: r-lib/actions/setup-r@v2
-      
       - uses: r-lib/actions/setup-pandoc@v2  # Add this step to install Pandoc
-      
       - name: Install packages
         run: |
           Rscript -e 'install.packages(c(
@@ -28,7 +25,4 @@ jobs:
           
       - name: Create email and send
         run: Rscript run.R
-      - name: Install httr
-        run: Rscript -e 'install.packages("httr", dependencies = TRUE)'
-      - name: Create email and send
-        run: Rscript run.R
+
