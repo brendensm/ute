@@ -3,7 +3,16 @@ library(dplyr)
 library(lubridate)
 library(blastula)
 
-gs4_auth(email = "brendensmithmi@gmail.com")
+library(googlesheets4)
+library(jsonlite)
+
+# Load the service account JSON from an environment variable
+json_key <- Sys.getenv("GOOGLE_SERVICE_ACCOUNT_JSON")
+service_account <- fromJSON(json_key)
+
+# Authenticate using the service account key
+gs4_auth(path = service_account)
+
 
 data <- read_sheet("https://docs.google.com/spreadsheets/d/1Qszy3C8C794LdQF3dAU4ZzENPqeYAGeHOQn8ajDt2Qs/edit?gid=635450401#gid=635450401", sheet = 2) |>
   janitor::clean_names()
