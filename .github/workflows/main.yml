@@ -5,7 +5,7 @@ on:
     - cron: '45 15 * * *'  # once on the first of the month
 
 jobs:
-  blue-post:
+  notification:
     runs-on: macOS-latest
     env:
       SMTP2GO_KEY: ${{ secrets.SMTP2GO_KEY }}
