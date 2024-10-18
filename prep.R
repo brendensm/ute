@@ -2,16 +2,19 @@ library(googlesheets4)
 library(dplyr)
 library(lubridate)
 library(blastula)
-
-library(googlesheets4)
 library(jsonlite)
 
 # Load the service account JSON from an environment variable
-json_key <- Sys.getenv("GOOGLE_SERVICE_ACCOUNT_JSON")
-service_account <- fromJSON(json_key)
+
+service_account <- Sys.getenv("GOOGLE_SERVICE_ACCOUNT_JSON")
+
+
+json_path <- tempfile(fileext = ".json")
+writeLines(service_account, json_path)
+
 
 # Authenticate using the service account key
-gs4_auth(path = service_account)
+gs4_auth(path = json_path)
 
 
 data <- read_sheet("https://docs.google.com/spreadsheets/d/1Qszy3C8C794LdQF3dAU4ZzENPqeYAGeHOQn8ajDt2Qs/edit?gid=635450401#gid=635450401", sheet = 2) |>
