@@ -1,0 +1,54 @@
+---
+title:  "Utility Bill Summary"
+output: blastula::blastula_email
+---
+
+```{css, echo=FALSE}
+* {
+  font-family: Georgia ! Important;
+  font-size:1.015em !Important;
+}
+
+```
+
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+source("prep.R")
+library(gt)
+r <- sample(1:7)[1]
+nicknames <- c("Beep", "Freak", "Lovey", "Dove", "Crunch",
+               "Munch", "Fleep")
+
+greet <- nicknames[r]
+
+```
+
+Hello `r greet`,
+
+This month, your half of the utility bill is: `r paste0("$", h$half)`.
+
+For a closer look at our bills this month see the table below: 
+
+```{r, echo=FALSE , out.width='100%', results='asis'}
+monthly_breakdown |> 
+  rename(Month = month_1,
+         Company = company,
+         Type = type, 
+         Amount = amount,
+         `Due Date` = due_date) |> 
+  select(-c(notes, Month)) |> 
+  select(Company, Type, `Due Date`, Amount) |> 
+  gt::gt() |> 
+  gt::fmt_date(columns = `Due Date`, date_style = 5) |> 
+  gt::fmt_currency(columns = Amount) |> 
+  gt::tab_options(
+    table.width = gt::pct(90),    # Set table width to 100% of the document width
+    table.align = "center"     # Center-align the table
+  ) |> 
+  gt::opt_stylize(style = 2)
+```
+
+
+I love you!
+
+Brenden
