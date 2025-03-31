@@ -21,23 +21,23 @@ nicknames <- c("Beep", "Freak", "Lovey", "Dove", "Crunch",
 
 greet <- nicknames[r]
 
+
+
 ```
 
 Hello `r greet`,
 
-This month, your half of the utility bill is: `r paste0("$", h$half)`.
+This month, your half of the utility bill is: `r paste0("$", half$half)`.
 
 For a closer look at our bills this month see the table below: 
 
 ```{r, echo=FALSE , out.width='100%', results='asis'}
-monthly_breakdown |> 
-  rename(Month = month_1,
-         Company = company,
+
+month_sub |> 
+  select(Company = company, 
          Type = type, 
-         Amount = amount,
-         `Due Date` = due_date) |> 
-  select(-c(notes, Month)) |> 
-  select(Company, Type, `Due Date`, Amount) |> 
+         `Due Date` = due_date, 
+         Amount = amount) |> 
   gt::gt() |> 
   gt::fmt_date(columns = `Due Date`, date_style = 5) |> 
   gt::fmt_currency(columns = Amount) |> 
@@ -46,6 +46,7 @@ monthly_breakdown |>
     table.align = "center"     # Center-align the table
   ) |> 
   gt::opt_stylize(style = 2)
+
 ```
 
 

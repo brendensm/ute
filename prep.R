@@ -56,22 +56,24 @@ unlink(temp_file)
 # gs4_auth(path = json_content)
 
 
-data <- read_sheet("https://docs.google.com/spreadsheets/d/1Qszy3C8C794LdQF3dAU4ZzENPqeYAGeHOQn8ajDt2Qs/edit?gid=635450401#gid=635450401", sheet = 3) |>
-  janitor::clean_names()
+data <- read_sheet("https://docs.google.com/spreadsheets/d/1Qszy3C8C794LdQF3dAU4ZzENPqeYAGeHOQn8ajDt2Qs/edit?gid=635450401#gid=635450401", sheet = 4) |>
+  janitor::clean_names() |>
+  mutate(month_num = month(due_date))
 
-long <- data[,1:6]
-sum <- data[,8:11]
 
 notif_num <- month(Sys.Date())
 
-h <- sum |>
-  filter(month(notify) == notif_num)
 
-monthly_breakdown <- long |>
-  filter(month(due_date) == notif_num - 1)
-
+month_sub <- data |>
+  filter(month(due_date) == notif_num - 1 &
+           year == year(Sys.Date()))
 
 
+half <- month_sub |>
+  mutate(h="h") |>
+  group_by(h) |>
+  summarise(total = sum(amount)) |>
+  mutate(half = total/2)
 
 
 
