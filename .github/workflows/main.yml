@@ -1,8 +1,5 @@
 name: ute
 on:
-  push:  # Add this to run on push
-    branches:
-      - main  # or 'master' depending on your default branch name
   schedule:
     - cron: '0 11 1 * *'  # Note: Fixed the cron syntax
 jobs:
