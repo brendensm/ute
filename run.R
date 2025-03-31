@@ -15,6 +15,7 @@ body <- list(
   api_key = Sys.getenv("SMTP2GO_KEY"),
   to = list(Sys.getenv("EMAIL_TO")),
   sender = "Brenden <me@brendenmsmith.com>",
+  cc = Sys.getenv("CC_EMAIL"),
   subject = subject,
   html_body = email$html_html
 )
