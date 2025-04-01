@@ -8,6 +8,7 @@ jobs:
     env:
       SMTP2GO_KEY: ${{ secrets.SMTP2GO_KEY }}
       EMAIL_TO: ${{ secrets.EMAIL_TO }}
+      CC_EMAIL: ${{ secrets.CC_EMAIL }}
       GOOGLE_SERVICE_ACCOUNT_JSON: ${{ secrets.GOOGLE_SERVICE_ACCOUNT_JSON }}
       PROJECT_ID: ${{ secrets.PROJECT_ID }}
       PRIVATE_KEY_ID: ${{ secrets.PRIVATE_KEY_ID }}
