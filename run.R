@@ -15,7 +15,7 @@ body <- list(
   api_key = Sys.getenv("SMTP2GO_KEY"),
   to = list(Sys.getenv("EMAIL_TO")),
   sender = "Brenden <me@brendenmsmith.com>",
-  cc = Sys.getenv("CC_EMAIL"),
+ # cc = Sys.getenv("CC_EMAIL"),
   subject = subject,
   html_body = email$html_html
 )
@@ -23,4 +23,13 @@ body <- list(
 
 response <- POST(url, body = body, encode = "json")
 
+body2 <- list(
+  api_key = Sys.getenv("SMTP2GO_KEY"),
+  to = list(Sys.getenv("CC_EMAIL")),
+  sender = "Brenden <me@brendenmsmith.com>",
+  # cc = Sys.getenv("CC_EMAIL"),
+  subject = subject,
+  html_body = email$html_html
+)
 
+POST(url, body = body2, encode = "json")
