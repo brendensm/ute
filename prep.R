@@ -73,7 +73,7 @@ half <- month_sub |>
   mutate(h="h") |>
   group_by(h) |>
   summarise(total = sum(amount)) |>
-  mutate(half = total/2)
+  mutate(half = total*0.43)
 
 
 

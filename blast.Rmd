@@ -15,9 +15,9 @@ output: blastula::blastula_email
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
 source("prep.R")
 library(gt)
-r <- sample(1:7)[1]
+r <- sample(1:14)[1]
 nicknames <- c("Beep", "Freak", "Lovey", "Dove", "Crunch",
-               "Munch", "Fleep")
+               "Munch", "Fleep", "Love Dove", "Sug", "Flip", "Dip", "Brown-eyed Freak", "Sweet", "Crunchlax")
 
 greet <- nicknames[r]
 
@@ -27,7 +27,7 @@ greet <- nicknames[r]
 
 Hello `r greet`,
 
-This month, your half of the utility bill is: `r paste0("$", half$half)`.
+This month, your share of the utility bill is: `r paste0("$", half$half)`.
 
 For a closer look at our bills this month see the table below: 
 
@@ -49,6 +49,7 @@ month_sub |>
 
 ```
 
+If you want to look at the dashboard I made for our utilities, [you can view it here.](http://192.168.4.107:3838/) You will have to be connected to our wifi to view it.
 
 I love you!
 
