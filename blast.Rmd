@@ -27,7 +27,7 @@ greet <- nicknames[r]
 
 Hello `r greet`,
 
-This month, your share of the utility bill is: `r paste0("$", half$half)`.
+This month, your share of the utility bill is: `r paste0("$", round(half$half, 2))`.
 
 For a closer look at our bills this month see the table below: 
 
