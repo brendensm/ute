@@ -61,12 +61,23 @@ data <- read_sheet("https://docs.google.com/spreadsheets/d/1Qszy3C8C794LdQF3dAU4
   mutate(month_num = month(due_date))
 
 
-notif_num <- month(Sys.Date())
+notif_num <- if(month(Sys.Date()) == 1){
+  13
+}else{
+  month(Sys.Date())
+}
+
+
+yfilter <- if(month(Sys.Date()) == 1){
+  year(Sys.Date()) - 1
+}else{
+  year(Sys.Date())
+}
 
 
 month_sub <- data |>
   filter(month(due_date) == notif_num - 1 &
-           year == year(Sys.Date()))
+           year == yfilter)
 
 
 half <- month_sub |>
